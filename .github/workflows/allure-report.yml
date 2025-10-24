@@ -1,4 +1,4 @@
-name: Run tests and publish Allure report
+name: Run Allure Vitest Tests and Deploy Report
 
 on:
   push:
@@ -8,36 +8,54 @@ jobs:
   test-and-deploy:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
     steps:
-      # 1. Checkout code
+      # 1️⃣ Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      # 2. Setup Node.js
+      # 2️⃣ Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
 
-      # 3. Install dependencies (in frontend folder)
+      # 3️⃣ Install dependencies
       - name: Install frontend dependencies
         working-directory: frontend
         run: npm ci --ignore-optional
 
-      # 4. Run tests and generate Allure results
-      - name: Run tests and generate allure results
+      # 4️⃣ Run Vitest tests and generate Allure results
+      - name: Run Vitest tests
         working-directory: frontend
         run: npm run test:report
 
-      # 5. Generate Allure HTML report
+      # 5️⃣ Generate Allure HTML report
       - name: Generate Allure HTML report
         working-directory: frontend
-        run: npx allure generate ./allure-results --clean -o ./allure-report-html
+        run: |
+          npx allure generate ./allure-results --clean -o ./allure-report-html || true
 
-      # 6. Deploy Allure report to GitHub Pages
-      - name: Deploy Allure HTML report to GitHub Pages
+      # 6️⃣ Deploy Allure report to GitHub Pages
+      - name: Deploy Allure report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: frontend/allure-report-html
+          force_orphan: true
+
+      # 7️⃣ Display live report URL in workflow summary
+      - name: Show Allure Report URL
+        run: |
+          echo "## ✅ Allure Report Published Successfully!" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔗 View the report here:" >> $GITHUB_STEP_SUMMARY
+          echo "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/" >> $GITHUB_STEP_SUMMARY
