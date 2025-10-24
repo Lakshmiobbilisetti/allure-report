@@ -6,20 +6,20 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      "@": path.resolve(__dirname, "./src"), // '@' points to frontend/src
     },
   },
   test: {
-    globals: true,
-    environment: "jsdom",
-    setupFiles: ["./src/setupTests.ts"], // your setup file
+    globals: true, // use it, describe, expect globally
+    environment: "jsdom", // simulate browser for component tests
+    setupFiles: ["./src/setupTests.ts"], // your global setup
     reporters: [
-      "default", // keeps normal console output
+      "default", // normal console output
       [
         "allure-vitest/reporter", // Allure reporter
         {
-          resultsDir: "allure-results", // folder where Allure results are saved
-          useCucumberStepReporter: false, // optional, can enable if using Cucumber
+          resultsDir: "allure-results", // output directory for JSON results
+          useCucumberStepReporter: false, // optional
         },
       ],
     ],
