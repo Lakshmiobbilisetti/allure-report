@@ -1,0 +1,5 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","7","renders key UI elements","Dashboard Page","2025-10-22","passed","2025-10-22","","","",""
+"","191","renders Sign In form by default","AuthPage","2025-10-22","passed","2025-10-22","","","",""
+"","137","renders the dashboard heading","Dashboard Page","2025-10-22","passed","2025-10-22","","","",""
+"","73","switches to Sign Up form when clicking 'Sign Up'","AuthPage","2025-10-22","passed","2025-10-22","","","",""
