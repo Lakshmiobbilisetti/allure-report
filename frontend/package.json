@@ -1,20 +1,20 @@
 {
-  "name": "vite-project",
+  "name": "frontend",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "description": "React + Vite setup with testing, Tailwind, and backend integration.",
   "main": "eslint.config.js",
   "scripts": {
-    "dev": "vite",                        
-    "build": "tsc -b && vite build",      
+    "dev": "vite",
+    "build": "tsc -b && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "test": "vitest",                      
-    "test:ui": "vitest --ui",              
+    "test": "vitest",
+    "test:ui": "vitest --ui",
     "test:jest": "jest",
-    "test:report": "vitest run",          
-    "start:all": "concurrently \"npm run dev\" \"npm run test\"" 
+    "test:report": "vitest run",
+    "start:all": "concurrently \"npm run dev\" \"npm run test\""
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.7",
