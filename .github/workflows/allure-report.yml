@@ -14,7 +14,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: frontend # Everything runs inside frontend
+        working-directory: frontend   # Everything runs inside frontend
 
     steps:
       # 1️⃣ Checkout repository
@@ -30,7 +30,7 @@ jobs:
           node-version: 20
 
       # 3️⃣ Install frontend dependencies (ignore optional Rollup binaries)
-      - name: Install dependencies
+      - name: Install frontend dependencies
         run: npm ci --ignore-optional
 
       # 4️⃣ Run Vitest tests and generate Allure results
@@ -51,7 +51,7 @@ jobs:
           publish_branch: gh-pages
           user_name: github-actions
           user_email: github-actions@github.com
-          force_orphan: true # ensures gh-pages branch is created automatically
+          force_orphan: true   # ensures gh-pages branch is created automatically
 
       # 7️⃣ Display live report URL in workflow summary
       - name: Show Allure Report URL
