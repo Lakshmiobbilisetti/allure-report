@@ -14,11 +14,7 @@
     "test:ui": "vitest --ui",
     "test:jest": "jest",
     "test:report": "vitest run",
-<<<<<<< HEAD
-    "start:all": "concurrently \"npm run dev\" \"npm run test\""
-=======
     "start:all": "concurrently \"npm run dev\" \"npm run test\"",
->>>>>>> 753be9e (desve)
     "allure:report": "allure generate ./allure-results --clean -o ./allure-report-html"
   },
   "dependencies": {
