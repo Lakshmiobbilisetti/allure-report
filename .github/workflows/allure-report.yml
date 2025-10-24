@@ -2,7 +2,7 @@ name: Run Allure Vitest Tests and Deploy Report
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   test-and-deploy:
@@ -27,7 +27,7 @@ jobs:
 
       # 3️⃣ Install frontend dependencies
       - name: Install dependencies
-        run: npm ci
+        run: npm install
         working-directory: frontend
 
       # 4️⃣ Run Vitest tests and generate Allure results
